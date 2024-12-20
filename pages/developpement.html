@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCreative - Développement</title>
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #3498db;
+            --accent-color: #9b59b6;
+            --text-color: #2c3e50;
+            --background-color: #ecf0f1;
+        }
+
+        /* Styles repris de la page Infographie & Branding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .dev-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .shape1 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            top: 20%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape2 {
+            width: 150px;
+            height: 150px;
+            transform: rotate(45deg);
+            top: 40%;
+            right: 15%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        .header-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dev-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dev-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .dev-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .dev-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .dev-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .dev-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .technologies {
+            padding: 4rem 5%;
+            background: white;
+        }
+
+        .tech-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tech-item {
+            text-align: center;
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .tech-item h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .projects {
+            padding: 4rem 5%;
+        }
+
+        .projects h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(46, 204, 113, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay h3 {
+            color: white;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .project-overlay p {
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay h3,
+        .project-card:hover .project-overlay p {
+            transform: translateY(0);
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            height: 60px;
+            display: flex;
+            align-items: left;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 100%;
+            width: 100;
+            max-height: 50px;
+            object-fit: contain;
+            -webkit-backface-visibility: hidden;
+            -ms-transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                height: 20px;
+            }
+
+            .logo img {
+                max-height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                height: 60px;
+            }
+
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                height: 40px;
+            }
+
+            .logo img {
+                max-height: 35px;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            nav {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="logo-container">
+                <img src="../assets/images/logo.png" alt="TechCreative">
+                <span class="logo-text">TechCreative</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Accueil</a>
+                <a href="infographie.html">Infographie</a>
+                <a href="multimedia.html">Multimédia</a>
+                <a href="informatique.html">Informatique</a>
+                <a href="communication.html">Communication</a>
+                <a href="developpement.html">Développement</a>
+                <a href="formation.html">Formation</a>
+                <a href="webdesign.html">Web Design</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="dev-header">
+        <div class="geometric-shape shape1"></div>
+        <div class="geometric-shape shape2"></div>
+        <div class="header-content">
+            <h1>Développement</h1>
+            <p>Création d'applications, DApps et jeux sur mesure</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="dev-services">
+            <div class="services-grid">
+                <div class="dev-card" data-aos="fade-up">
+                    <div class="dev-icon">📱</div>
+                    <h2>Applications Mobiles</h2>
+                    <p>Développement d'applications iOS et Android performantes et intuitives</p>
+                </div>
+
+                <div class="dev-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="dev-icon">🎮</div>
+                    <h2>Jeux Vidéo</h2>
+                    <p>Création de jeux ludiques et éducatifs adaptés à tous les publics</p>
+                </div>
+
+                <div class="dev-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="dev-icon">⚡</div>
+                    <h2>DApps</h2>
+                    <p>Applications décentralisées utilisant les technologies blockchain</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="technologies">
+            <div class="tech-container">
+                <h2>Technologies</h2>
+                <div class="tech-grid">
+                    <div class="tech-item" data-aos="fade-up">
+                        <div class="tech-icon">🌐</div>
+                        <h3>Web</h3>
+                    </div>
+                    <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="tech-icon">📱</div>
+                        <h3>Mobile</h3>
+                    </div>
+                    <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="tech-icon">🎮</div>
+                        <h3>Unity</h3>
+                    </div>
+                    <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="tech-icon">⚛️</div>
+                        <h3>React</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2>Projets</h2>
+            <div class="project-grid">
+                <div class="project-card" data-aos="fade-up">
+                    <img src="../assets/images/portfolio/telj.png" alt="App Mobile">
+                    <div class="project-overlay">
+                        <h3>Application E-commerce</h3>
+                        <p>Application mobile cross-platform</p>
+                    </div>
+                </div>
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="../assets/images/portfolio/burj.png" alt="Jeu Éducatif">
+                    <div class="project-overlay">
+                        <h3>Jeu Éducatif</h3>
+                        <p>Apprentissage ludique pour enfants</p>
+                    </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="../assets/images/portfolio/jeu1.png" alt="DApp">
+                <div class="project-overlay">
+                    <h3>DApp NFT</h3>
+                    <p>Jeu d'aventures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modification du chemin du bouton retour -->
+    <a href="../index.html" class="back-button">Retour à l'accueil</a>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

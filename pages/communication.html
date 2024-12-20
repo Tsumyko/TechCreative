@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCreative - Communication Digitale</title>
+   <link href="../assets/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e84393;
+            --secondary-color: #6c5ce7;
+            --accent-color: #00cec9;
+            --dark-color: #2d3436;
+            --light-color: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: var(--dark-color);
+        }
+
+        /* Header social style */
+        .social-header {
+            min-height: 80vh;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .icon {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .header-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 5%;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Platforms Section */
+        .platforms {
+            padding: 80px 5%;
+            background: white;
+        }
+
+        .platforms h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .platform-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .platform-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 5%;
+            text-align: center;
+            background: #f5f6fa;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .mobile-icon {
+                color: var(--dark-color);
+                font-size: 1.5rem;
+                text-decoration: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            .platform-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(248, 249, 250, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo img {
+            max-height: 50px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="social-header">
+    <nav>
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="TechCreative">
+        </div>
+        <div class="nav-links">
+            <a href="../index.html">Accueil</a>
+            <a href="infographie.html">Infographie</a>
+            <a href="multimedia.html">Multimédia</a>
+            <a href="informatique.html">Informatique</a>
+            <a href="communication.html">Communication</a>
+            <a href="developpement.html">Développement</a>
+            <a href="formation.html">Formation</a>
+            <a href="webdesign.html">Web Design</a>
+        </div>
+        <div class="mobile-menu">
+            <a href="../index.html" class="mobile-icon"><i class="fas fa-home"></i></a>
+            <a href="infographie.html" class="mobile-icon"><i class="fas fa-palette"></i></a>
+            <a href="multimedia.html" class="mobile-icon"><i class="fas fa-video"></i></a>
+            <a href="informatique.html" class="mobile-icon"><i class="fas fa-laptop"></i></a>
+            <a href="communication.html" class="mobile-icon"><i class="fas fa-comments"></i></a>
+            <a href="developpement.html" class="mobile-icon"><i class="fas fa-code"></i></a>
+            <a href="formation.html" class="mobile-icon"><i class="fas fa-graduation-cap"></i></a>
+            <a href="webdesign.html" class="mobile-icon"><i class="fas fa-desktop"></i></a>
+        </div>
+    </nav>
+    
+    <div class="floating-icons">
+        <!-- Emojis représentant les réseaux sociaux -->
+        <span class="icon" style="top: 20%; left: 20%;">📱</span>
+        <span class="icon" style="top: 60%; left: 80%;">💬</span>
+        <span class="icon" style="top: 40%; left: 50%;">📊</span>
+        <span class="icon" style="top: 80%; left: 30%;">🔗</span>
+    </div>
+    <div class="header-content" data-aos="fade-up">
+        <h1>Communication Digitale</h1>
+        <p>Stratégies innovantes pour votre présence numérique</p>
+    </div>
+    </header>
+
+    <section class="services">
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up">
+                <div class="service-icon">📱</div>
+                <h3>Gestion Réseaux Sociaux</h3>
+                <p>Gestion professionnelle de vos comptes sociaux et création de contenu engageant.</p>
+            </div>
+
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon">📊</div>
+                <h3>Marketing Digital</h3>
+                <p>Stratégies marketing personnalisées pour accroître votre visibilité en ligne.</p>
+            </div>
+
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon">📈</div>
+                <h3>Analyse & Performance</h3>
+                <p>Suivi et optimisation de vos performances sur les réseaux sociaux.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item" data-aos="fade-up">
+                <div class="stat-number">Diffusion</div>
+                <p>multi-plateformes</p>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number">Automatisation</div>
+                <p>des process</p>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number">Impacte</div>
+                <p>boostée</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="platforms">
+        <h2>Nos Plateformes</h2>
+        <div class="platform-grid">
+            <div class="platform-item" data-aos="fade-up">
+                <div class="platform-icon">📘</div>
+                <h3>Facebook</h3>
+            </div>
+            <div class="platform-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="platform-icon">📸</div>
+                <h3>Instagram</h3>
+            </div>
+            <div class="platform-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="platform-icon">🐦</div>
+                <h3>Twitter</h3>
+            </div>
+            <div class="platform-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="platform-icon">💼</div>
+                <h3>LinkedIn</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <a href="#contact" class="cta-button">Booster votre présence digitale</a>
+    </section>
+
+    <a href="../index.html" class="back-button">Retour à l'accueil</a>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

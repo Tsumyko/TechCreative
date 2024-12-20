@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCreative - Infographie & Branding</title>
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --accent-color: #ffe66d;
+            --text-color: #2d3436;
+            --background-color: #f7f7f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        /* Header style */
+        .creative-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .shape1 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            top: 20%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape2 {
+            width: 150px;
+            height: 150px;
+            transform: rotate(45deg);
+            top: 40%;
+            right: 15%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        .header-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Portfolio section */
+        .portfolio {
+            padding: 4rem 5%;
+            background: white;
+        }
+
+        .portfolio h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 107, 107, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay h3 {
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay h3 {
+            transform: translateY(0);
+        }
+
+        /* Bouton retour */
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Navigation styles */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            height: 60px;
+            display: flex;
+            align-items: left;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 100%;
+            width: 100;
+            max-height: 50px;
+            object-fit: contain;
+            -webkit-backface-visibility: hidden;
+            -ms-transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            height: 100px;
+            width: 100%;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .mobile-icon {
+                color: var(--dark-color);
+                font-size: 1.5rem;
+                text-decoration: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .logo {
+                height: 20px;
+            }
+            
+            .logo img {
+                max-height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            nav {
+                height: 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                height: 40px;
+            }
+            
+            .logo img {
+                max-height: 35px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            nav {
+                height: 50px;
+            }
+        }
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="logo-container">
+                <img src="../assets/images/logo.png" alt="TechCreative">
+                <span class="logo-text">TechCreative</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Accueil</a>
+                <a href="infographie.html">Infographie</a>
+                <a href="multimedia.html">Multimédia</a>
+                <a href="informatique.html">Informatique</a>
+                <a href="communication.html">Communication</a>
+                <a href="developpement.html">Développement</a>
+                <a href="formation.html">Formation</a>
+                <a href="webdesign.html">Web Design</a>
+            </div>
+             <div class="mobile-menu">
+                <a href="../index.html" class="mobile-icon"><i class="fas fa-home"></i></a>
+                <a href="infographie.html" class="mobile-icon"><i class="fas fa-palette"></i></a>
+                <a href="multimedia.html" class="mobile-icon"><i class="fas fa-video"></i></a>
+                <a href="informatique.html" class="mobile-icon"><i class="fas fa-laptop"></i></a>
+                <a href="communication.html" class="mobile-icon"><i class="fas fa-comments"></i></a>
+                <a href="developpement.html" class="mobile-icon"><i class="fas fa-code"></i></a>
+                <a href="formation.html" class="mobile-icon"><i class="fas fa-graduation-cap"></i></a>
+                <a href="webdesign.html" class="mobile-icon"><i class="fas fa-desktop"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Le reste du contenu reste identique -->
+    <header class="creative-header">
+        <div class="geometric-shape shape1"></div>
+        <div class="geometric-shape shape2"></div>
+        <div class="header-content">
+            <h1>Infographie & Branding</h1>
+            <p>Donnez vie à votre identité visuelle avec des designs uniques et percutants</p>
+        </div>
+    </header>
+
+    <section class="services-grid">
+        <div class="service-card" data-aos="fade-up">
+            <div class="service-icon">🎨</div>
+            <h3>Design de Logo</h3>
+            <p>Création de logos uniques et mémorables qui capturent l'essence de votre marque et marquent les esprits.</p>
+        </div>
+        
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-icon">📐</div>
+            <h3>Charte Graphique</h3>
+            <p>Développement d'identités visuelles cohérentes comprenant couleurs, typographies et éléments graphiques.</p>
+        </div>
+        
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-icon">📄</div>
+            <h3>Supports Marketing</h3>
+            <p>Conception de flyers, brochures, cartes de visite et tout support de communication imprimé.</p>
+        </div>
+    </section>
+
+    <section class="portfolio">
+        <h2>Nos Réalisations</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-aos="fade-up">
+                <img src="../assets/images/portfolio/logo1.png" alt="Design de logo">
+                <div class="portfolio-overlay">
+                    <h3>Logo Design Studio Local</h3>
+                </div>
+            </div>
+            <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="../assets/images/portfolio/sab.png" alt="Charte graphique">
+                <div class="portfolio-overlay">
+                    <h3>Identité Visuelle Salon de soins</h3>
+                </div>
+            </div>
+            <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="../assets/images/portfolio/flyer.png" alt="Support marketing">
+                <div class="portfolio-overlay">
+                    <h3>Brochure Événement</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="../index.html" class="back-button">Retour à l'accueil</a>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

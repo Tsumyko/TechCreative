@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCreative - Création de Sites Web</title>
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #0099ff;
+            --secondary-color: #00c853;
+            --accent-color: #ff4081;
+            --dark-color: #263238;
+            --light-color: #ffffff;
+            --bg-color: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--dark-color);
+        }
+
+        .web-header {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            color: white;
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .web-services {
+            padding: 80px 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .process {
+            padding: 80px 5%;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+        }
+
+        .process-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .portfolio {
+            padding: 80px 5%;
+            background: var(--bg-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 153, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .technologies {
+            padding: 80px 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .tech-item {
+            padding: 1rem;
+            border-radius: 10px;
+            background: var(--bg-color);
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-timeline::before {
+                left: 0;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-content {
+                width: 100%;
+                margin: 0 !important;
+            }
+        }
+        nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    }
+    
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .logo-container {
+        height: 60px;
+        display: flex;
+        align-items: left;
+        gap: 10px;
+        text-decoration: none;
+    }
+    
+    .logo img {
+        height: 100%;
+        width: 100;
+        max-height: 50px;
+        object-fit: contain;
+        -webkit-backface-visibility: hidden;
+        -ms-transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+    
+    .nav-links a {
+        text-decoration: none;
+        color: var(--dark-color);
+        transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+        color: var(--primary-color);
+    }
+    
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+    }
+    </style>
+</head>
+<body>
+        <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="logo-container">
+                <img src="../assets/images/logo.svg" alt="TechCreative">
+                <span class="logo-text">TechCreative</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Accueil</a>
+                <a href="infographie.html">Infographie</a>
+                <a href="multimedia.html">Multimédia</a>
+                <a href="informatique.html">Informatique</a>
+                <a href="communication.html">Communication</a>
+                <a href="developpement.html">Développement</a>
+                <a href="formation.html">Formation</a>
+                <a href="webdesign.html">Web Design</a>
+            </div>
+        </div>
+    </nav>
+    <header class="web-header">
+        <div class="waves"></div>
+        <div class="header-content">
+            <div class="header-text" data-aos="fade-up">
+                <h1>Création de Sites Web</h1>
+                <p>Des solutions web personnalisées et performantes pour votre entreprise</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="web-services">
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up">
+                <div class="service-icon">🎨</div>
+                <h3>Design Sur Mesure</h3>
+                <p>Création d'interfaces uniques et adaptées à votre image de marque</p>
+            </div>
+
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon">📱</div>
+                <h3>Responsive Design</h3>
+                <p>Sites adaptés à tous les appareils : ordinateurs, tablettes, mobiles</p>
+            </div>
+
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon">🚀</div>
+                <h3>Performance</h3>
+                <p>Optimisation des performances et des temps de chargement</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="process">
+        <h2 class="section-title" data-aos="fade-up">Notre Processus</h2>
+        <div class="process-timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3>1. Analyse des Besoins</h3>
+                    <p>Étude approfondie de vos objectifs et de vos attentes</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3>2. Design & Maquettes</h3>
+                    <p>Création des maquettes et validation du design</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3>3. Développement</h3>
+                    <p>Intégration et développement des fonctionnalités</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3>4. Tests & Lancement</h3>
+                    <p>Tests approfondis et mise en ligne du site</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio">
+        <h2 class="section-title" data-aos="fade-up">Nos Réalisations</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-aos="fade-up">
+                <img src="../assets/images/portfolio/ecommerce.jpg" alt="Site E-commerce">
+                <div class="portfolio-overlay">
+                    <h3>Site E-commerce</h3>
+                    <p>Boutique en ligne responsive</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="../assets/images/portfolio/vitrine.jpg" alt="Site Vitrine">
+                <div class="portfolio-overlay">
+                    <h3>Site Vitrine</h3>
+                    <p>Présentation entreprise moderne</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="../assets/images/portfolio/webapp.jpg" alt="Application Web">
+                <div class="portfolio-overlay">
+                    <h3>Application Web</h3>
+                    <p>Interface utilisateur intuitive</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="technologies">
+        <h2 class="section-title" data-aos="fade-up">Technologies Utilisées</h2>
+        <div class="tech-grid">
+            <div class="tech-item" data-aos="fade-up">
+                <div class="tech-icon">📱</div>
+                <h3>HTML5/CSS3</h3>
+            </div>
+            
+            <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-icon">⚡</div>
+                <h3>JavaScript</h3>
+            </div>
+            
+            <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-icon">🎨</div>
+                <h3>WordPress</h3>
+            </div>
+            
+            <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="tech-icon">🚀</div>
+                <h3>React</h3>
+            </div>
+        </div>
+    </section>
+
+    <a href="../index.html" class="back-button">Retour à l'accueil</a>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

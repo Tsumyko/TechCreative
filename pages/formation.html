@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCreative - Formation</title>
+   <link href="../assets/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #ff7f50;
+            --secondary-color: #4facfe;
+            --accent-color: #7bed9f;
+            --dark-color: #2d3436;
+            --light-color: #ffffff;
+            --background-color: #f7f9fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--dark-color);
+        }
+
+        /* Header éducatif */
+        .edu-header {
+            min-height: 80vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(45deg, #000 25%, transparent 25%),
+                linear-gradient(-45deg, #000 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #000 75%),
+                linear-gradient(-45deg, transparent 75%, #000 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 150px 20px;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Formation Cards */
+        .formations {
+            padding: 80px 5%;
+            background: var(--background-color);
+        }
+
+        .formations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .formation-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .formation-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .formation-image {
+            width: 100%;
+            height: 200px;
+            background: var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formation-content {
+            padding: 2rem;
+        }
+
+        .formation-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .formation-details {
+            margin-top: 1.5rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .detail-icon {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        /* Programme Section */
+        .programme {
+            padding: 80px 5%;
+            background: white;
+        }
+
+        .programme-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module {
+            background: var(--background-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .module:hover {
+            transform: translateX(10px);
+        }
+
+        .module h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .module-content {
+            margin-top: 1rem;
+            padding-left: 3rem;
+        }
+
+        .module-content ul {
+            list-style-type: none;
+        }
+
+        .module-content li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .module-content li::before {
+            content: '•';
+            color: var(--secondary-color);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 5%;
+            text-align: center;
+            background: var(--background-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            .formations-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    }
+    
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .logo-container {
+        height: 60px;
+        display: flex;
+        align-items: left;
+        gap: 10px;
+        text-decoration: none;
+    }
+    
+    .logo img {
+        height: 100%;
+        width: 100;
+        max-height: 50px;
+        object-fit: contain;
+        -webkit-backface-visibility: hidden;
+        -ms-transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+    
+    .nav-links a {
+        text-decoration: none;
+        color: var(--dark-color);
+        transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+        color: var(--primary-color);
+    }
+    
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+    }
+    </style>
+</head>
+<body>
+        <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="logo-container">
+                <img src="../assets/images/logo.png" alt="TechCreative">
+                <span class="logo-text">TechCreative</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Accueil</a>
+                <a href="infographie.html">Infographie</a>
+                <a href="multimedia.html">Multimédia</a>
+                <a href="informatique.html">Informatique</a>
+                <a href="communication.html">Communication</a>
+                <a href="developpement.html">Développement</a>
+                <a href="formation.html">Formation</a>
+                <a href="webdesign.html">Web Design</a>
+            </div>
+        </div>
+    </nav>
+    <header class="edu-header">
+        <div class="pattern-overlay"></div>
+        <div class="header-content" data-aos="fade-up">
+            <h1>Formation</h1>
+            <p>Développez vos compétences avec nos formations professionnelles</p>
+        </div>
+    </header>
+
+    <section class="formations">
+        <div class="formations-grid">
+            <div class="formation-card" data-aos="fade-up">
+                <div class="formation-image">
+                    <img src="/api/placeholder/400/200" alt="Formation Infographie">
+                </div>
+                <div class="formation-content">
+                    <h3>Formation Infographie</h3>
+                    <p>Maîtrisez les outils de création graphique professionnelle</p>
+                    <div class="formation-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>35 heures de formation</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>Groupes de 6 personnes max</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formation-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="formation-image">
+                    <img src="/api/placeholder/400/200" alt="Formation Multimédia">
+                </div>
+                <div class="formation-content">
+                    <h3>Formation Multimédia</h3>
+                    <p>Production et montage de contenus audiovisuels</p>
+                    <div class="formation-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>40 heures de formation</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>Groupes de 4 personnes max</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formation-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="formation-image">
+                    <img src="/api/placeholder/400/200" alt="Ateliers Créatifs">
+                </div>
+                <div class="formation-content">
+                    <h3>Ateliers Créatifs</h3>
+                    <p>Sessions pratiques et projets concrets</p>
+                    <div class="formation-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>Sessions de 4 heures</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>Groupes de 8 personnes max</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="programme">
+        <div class="programme-container">
+            <div class="module" data-aos="fade-left">
+                <h3>
+                    <span class="detail-icon">📚</span>
+                    Module 1 : Fondamentaux
+                </h3>
+                <div class="module-content">
+                    <ul>
+                        <li>Introduction aux outils de création</li>
+                        <li>Principes de design et composition</li>
+                        <li>Techniques de base</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module" data-aos="fade-left" data-aos-delay="100">
+                <h3>
+                    <span class="detail-icon">🎨</span>
+                    Module 2 : Pratique
+                </h3>
+                <div class="module-content">
+                    <ul>
+                        <li>Travaux pratiques guidés</li>
+                        <li>Projets personnels</li>
+                        <li>Retours d'expérience</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module" data-aos="fade-left" data-aos-delay="200">
+                <h3>
+                    <span class="detail-icon">🎯</span>
+                    Module 3 : Perfectionnement
+                </h3>
+                <div class="module-content">
+                    <ul>
+                        <li>Techniques avancées</li>
+                        <li>Optimisation des workflows</li>
+                        <li>Projets professionnels</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="testimonials-grid">
+            <div class="testimonial-card" data-aos="fade-up">
+                <div class="testimonial-avatar">👤</div>
+                <p>"Formation très complète et pratique. J'ai pu directement mettre en application mes acquis."</p>
+                <h4>Marie L.</h4>
+            </div>
+
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-avatar">👤</div>
+                <p>"Le format en petit groupe permet un vrai suivi personnalisé. Formateur à l'écoute."</p>
+                <h4>Pierre M.</h4>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <a href="#contact" class="cta-button">S'inscrire à une formation</a>
+    </section>
+
+    <a href="index.html" class="back-button">Retour à l'accueil</a>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

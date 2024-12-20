@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCreative - Solutions Informatiques</title>
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #00b4d8;
+            --secondary-color: #023e8a;
+            --accent-color: #48cae4;
+            --background-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2b2d42;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        /* Navigation styles */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            height: 60px;
+            display: flex;
+            align-items: left;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            max-height: 50px;
+            object-fit: contain;
+            -webkit-backface-visibility: hidden;
+            -ms-transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Header avec circuit imprimé stylisé */
+        .tech-header {
+            background-color: var(--secondary-color);
+            min-height: 70vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .circuit-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 95%, rgba(0,180,216,0.1) 95%),
+                linear-gradient(transparent 95%, rgba(0,180,216,0.1) 95%);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            color: white;
+        }
+
+        /* Services Technologiques */
+        .tech-services {
+            padding: 80px 5%;
+            background: var(--background-color);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Solutions Grid */
+        .solutions {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+        }
+
+        .solutions h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .solution-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .solution-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Call to Action */
+        .cta {
+            text-align: center;
+            padding: 80px 5%;
+            background: var(--background-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .logo-container {
+                height: 50px;
+            }
+            
+            .logo img {
+                max-height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container {
+                height: 40px;
+            }
+            
+            .logo img {
+                max-height: 35px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="logo-container">
+                <img src="../assets/images/logo.svg" alt="TechCreative">
+                <span class="logo-text">TechCreative</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Accueil</a>
+                <a href="infographie.html">Infographie</a>
+                <a href="multimedia.html">Multimédia</a>
+                <a href="informatique.html">Informatique</a>
+                <a href="communication.html">Communication</a>
+                <a href="developpement.html">Développement</a>
+                <a href="formation.html">Formation</a>
+                <a href="webdesign.html">Web Design</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="tech-header">
+        <div class="circuit-pattern"></div>
+        <div class="header-content">
+            <h1>Solutions Informatiques</h1>
+            <p>Expertise technique et solutions sur mesure pour optimiser votre environnement numérique</p>
+        </div>
+    </header>
+
+    <section class="tech-services">
+        <div class="services-container">
+            <div class="tech-card" data-aos="fade-up">
+                <div class="tech-icon">🔧</div>
+                <h3>Dépannage</h3>
+                <p>Diagnostic et résolution rapide de vos problèmes informatiques. Support à distance ou sur site.</p>
+            </div>
+
+            <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-icon">📊</div>
+                <h3>Audit & Conseil</h3>
+                <p>Analyse complète de votre infrastructure et recommandations personnalisées pour l'optimisation.</p>
+            </div>
+
+            <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-icon">🏠</div>
+                <h3>Domotique</h3>
+                <p>Installation et configuration de solutions domotiques pour un habitat connecté et intelligent.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="solutions">
+        <h2>Nos Solutions</h2>
+        <div class="solutions-grid">
+            <div class="solution-item" data-aos="fade-up">
+                <div class="solution-icon">💻</div>
+                <h3>Maintenance</h3>
+                <p>Entretien préventif et correctif de vos équipements</p>
+            </div>
+
+            <div class="solution-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="solution-icon">🔐</div>
+                <h3>Sécurité</h3>
+                <p>Protection et sécurisation de vos données</p>
+            </div>
+
+            <div class="solution-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="solution-icon">📱</div>
+                <h3>Smart Home</h3>
+                <p>Automatisation et contrôle de votre habitat</p>
+            </div>
+
+            <div class="solution-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="solution-icon">🔄</div>
+                <h3>Réseaux</h3>
+                <p>Installation et optimisation réseau</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <a href="#contact" class="cta-button">Demander un devis</a>
+    </section>
+
+    <a href="../index.html" class="back-button">Retour à l'accueil</a>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
